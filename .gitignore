@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Xcode / SwiftPM build artifacts
+.build/
+.swiftpm/
+Package.resolved
+DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# Expanded XCFramework.
+# Distribution uses the remote binary target (ShuftiPro.xcframework.zip attached
+# to a GitHub Release), so the unzipped framework is a local convenience only and
+# is not committed. Remove this line if you switch to a local `path:` binaryTarget.
+ShuftiPro.xcframework/
