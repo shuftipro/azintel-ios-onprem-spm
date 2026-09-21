@@ -249,3 +249,26 @@ curl -sIL https://github.com/shuftipro/azintel-ios-onprem-spm/releases/download/
 | `failed downloading ... 404`                                  | Asset not uploaded, wrong filename, or the tag in `url:` doesn't match the release tag.         |
 | Xcode keeps using the old version                             | **File → Packages → Reset Package Caches**, then update to latest.                              |
 | `artifact ... has an invalid or unsupported layout`           | The zip was created without `--keepParent`, so `ShuftiPro.xcframework` is not at the archive root. Re-run the `ditto` command in Step 2. |
+
+
+
+
+
+# 1. Commit the package files
+git add .gitignore Package.swift README.md RELEASING.md ShuftiPro.xcframework.zip
+git commit -m "Configure SPM binary distribution (ShuftiPro 1.0.0)"
+git push origin main
+
+# 2. Create and push the tag (must match version in Package.swift)
+git tag 1.0.0
+git push origin 1.0.0
+
+# 3. Publish the GitHub Release and attach the zip
+gh release create 1.0.0 ShuftiPro.xcframework.zip \
+    --title "1.0.0" \
+    --notes "AZIntel iOS On-Prem SDK 1.0.0"
+
+# 4. Verify the asset URL is live (want: HTTP/2 200)
+curl -sIL https://github.com/shuftipro/azintel-ios-onprem-spm/releases/download/1.0.0/ShuftiPro.xcframework.zip | grep -i "^HTTP"
+
+That's the whole thing. After step 4 returns 200, the package is ready and clients can add https://github.com/shuftipro/azintel-ios-onprem-spm in Xcode.
