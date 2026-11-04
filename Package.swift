@@ -2,9 +2,9 @@
 import PackageDescription
 
 let frameworkRepo = "azintel-ios-onprem-spm"
-let version = "1.0.3"
+let version = "1.0.4"
 let frameworkZip = "ShuftiPro.xcframework.zip"
-let checksumValue = "5c02405833c357687021e78dfd9c887a5214f7e94e658a665de9cffedb5d745d"
+let checksumValue = "86d1bb68f45c7447a3a29c037e1f3e73f670a377ffd6f0c8e3ef73f0a283fdfd"
 
 let package = Package(
     name: "azintel-ios-onprem-spm",
